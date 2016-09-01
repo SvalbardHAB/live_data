@@ -1,0 +1,19 @@
+doctype html
+html
+  head
+    title SPS Svalbard Balloon monitor
+    style body { margin: 5% 20%; } h1,h2,h3 {text-align:center}
+
+
+  body
+    h1 Svalbard Balloon Live Tracker
+    h3 Last update: #{last_update_time}
+
+    p A quick note—this is not intended to be a highly ergonomic or polished frontend, but simply an experimental system for giving a rough idea of what's going on in Svalbard during the balloon flights planned.
+
+    each balloon in balloons
+      hr
+      h3 Balloon no. #{balloon[0]}
+      p Pressure: #{balloon[1]} hPa
+      p Temperature
+    img(src="img.jpg") 
