@@ -14,3 +14,4 @@ while True:
     time.sleep(1)
     #requests.post(URLROOT, data = {'key':SEC_KEY, 'pressure':str(random.randint(980,1035))})
     time.sleep(1)
+    
