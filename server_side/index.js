@@ -8,6 +8,8 @@ var balloons = [[],[],[]]
 var last_update = null
 app.use(express.static('public'));
 app.use(bodyParser.json());
+
+
 //app.set('views', './views')
 //app.set('view engine','pug')
 app.post('/', function (req, res) {
@@ -19,9 +21,13 @@ app.post('/', function (req, res) {
       fs.unlinkSync('public/img.jpg');
       fs.writeFileSync('public/img.jpg',recimage);
     }
-    balloons[req.body.id] = parseInt(req.body.pressure);
+    balloons[req.body.id][pressure] = parseInt(req.body.pressure);
+    balloons[req.body.id][lat] = parseInt(req.body.latitude);
+    balloons[req.body.id][lng] = parseInt(req.body.longitude);
 
-    last_update = Date().toString()
+
+
+    last_update = Date().toString();
   }
   else console.log("security fail");
   res.send('');
@@ -35,9 +41,10 @@ app.get('/', function (req, res) {
   res.send(outstr);*/
   balloon_array = [];
   for(x=0;x<balloons.length;x++){
-    balloon_array.push([x,balloons[x]])
+    balloon_array.push([x,balloons[x]]);
+
   }
-  res.render('index.pug', { last_update_time : last_update, balloons:balloon_array});
+  res.render('index.pug', { last_update_time : last_update, balloons:balloon_array, balloon_lat:req.body.latitude,balloon_lng:req.body.longitude});
 
 });
 
